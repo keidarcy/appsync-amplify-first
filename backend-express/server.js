@@ -11,12 +11,15 @@ app.get('/no-cors', (req, res) => {
   });
 });
 
+app.options('/complex-cors', cors());
+app.options('/simple-cors', cors());
 /* -------------------------------------------------------------------------- */
 
 app.get('/simple-cors', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'yznb');
   console.info('GET /simple-cors');
   console.log({ headers: req.headers });
-  res.header('Access-Control-Allow-Origin', '*');
   res.json({
     text: 'Simple CORS requests are working. [GET]'
   });
@@ -37,7 +40,6 @@ app.head('/simple-cors', cors(), (req, res) => {
 
 /* -------------------------------------------------------------------------- */
 
-app.options('/complex-cors', cors());
 app.delete('/complex-cors', cors(), (req, res) => {
   console.info('DELETE /complex-cors');
   res.json({

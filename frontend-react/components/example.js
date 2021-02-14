@@ -25,12 +25,9 @@ export default ({ heading, url, method }) => {
   const callUrlWithMethod = async (ev) => {
     try {
       ev.preventDefault();
-      const myHeaders = new Headers({
-        accept: '*/*'
-      });
       const res = await fetch(baseUrl + url, {
         method,
-        headers: myHeaders
+        headers: { accept: 'yznb', Origin: 'xxx', ccccccc: 'X-Requested-With' }
       });
       if (res.ok) {
         setState('ok');
