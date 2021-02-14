@@ -27,7 +27,12 @@ export default ({ heading, url, method }) => {
       ev.preventDefault();
       const res = await fetch(baseUrl + url, {
         method,
-        headers: { accept: 'yznb', Origin: 'xxx', ccccccc: 'X-Requested-With' }
+        headers: {
+          accept: 'yznb',
+          Origin: 'http://localhost:3000/',
+          ccccccc: 'X-Requested-With'
+        },
+        credentials: 'include'
       });
       if (res.ok) {
         setState('ok');

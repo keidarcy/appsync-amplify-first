@@ -11,15 +11,17 @@ app.get('/no-cors', (req, res) => {
   });
 });
 
-app.options('/complex-cors', cors());
-app.options('/simple-cors', cors());
+// app.options('/complex-cors', cors());
+app.options('/simple-cors', cors({ origin: 'http://localhost:3000', credentials: true }));
 /* -------------------------------------------------------------------------- */
 
 app.get('/simple-cors', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.header('Access-Control-Allow-Headers', 'yznb');
+  res.header('Access-Control-Allow-Credentials', true);
   console.info('GET /simple-cors');
   console.log({ headers: req.headers });
+  console.log({ cookies: req.cookies });
   res.json({
     text: 'Simple CORS requests are working. [GET]'
   });
